@@ -537,12 +537,6 @@
         { role: "assistant", content: "どのようにお手伝いできますか？" },
       ];
 
-      var systemMessage = {
-        role: "system",
-        content:
-          "You are a helpful assistant for the AI Business Command Center. Answer concisely and professionally. Use Japanese when the user writes in Japanese.",
-      };
-
       function showToast() {
         toast.textContent = "準備中です";
         toast.classList.add("visible");
@@ -565,6 +559,15 @@
       }
 
       function buildApiMessages() {
+        const today = new Date().toLocaleDateString("ja-JP");
+        var systemMessage = {
+          role: "system",
+          content: `あなたはAIツール工房のAIアシスタントです。
+今日の日付は${today}です。
+飲食店・小企業・個人事業主の業務効率化をサポートします。
+質問には日本語で、わかりやすく丁寧に答えてください。
+日付や時事情報は今日の日付を基準に答えてください。`,
+        };
         return [systemMessage].concat(chatHistory);
       }
 
